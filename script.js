@@ -1,78 +1,115 @@
-
 ### `script.js`
 ```javascript
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ==========================================
-    // 1. SISTEMA DE COMPONENTES EXPANSÍVEIS (ACCORDION)
-    // ==========================================
-    const headers = document.querySelectorAll(".accordion-header");
+    // SISTEMA ACCORDION (EXPANSÍVEIS)
+    const accordionHeaders = document.querySelectorAll(".accordion-header");
 
-    headers.forEach(header => {
+    accordionHeaders.forEach(header => {
         header.addEventListener("click", () => {
             const item = header.parentElement;
-            const content = header.nextElementSibling;
-            const isExpanded = header.getAttribute("aria-expanded") === "true";
+            const isCurrentlyActive = item.classList.contains("active");
 
-            // Fecha apenas as outras abas abertas para visualização limpa
-            document.querySelectorAll(".accordion-header").forEach(otherHeader => {
-                if (otherHeader !== header) {
-                    otherHeader.setAttribute("aria-expanded", "false");
-                    otherHeader.nextElementSibling.hidden = true;
-                    otherHeader.querySelector(".icon").textContent = "+";
-                }
-            });
+            // Fecha todos antes de abrir o atual (comportamento clássico)
+            document.querySelectorAll(".accordion-item").forEach(i => i.classList.remove("active"));
+            document.querySelectorAll(".accordion-header").forEach(h => h.setAttribute("aria-expanded", "false"));
 
-            // Alterna o estado atual
-            header.setAttribute("aria-expanded", !isExpanded);
-            content.hidden = isExpanded;
-            header.querySelector(".icon").textContent = isExpanded ? "+" : "−";
+            if (!isCurrentlyActive) {
+                item.classList.add("active");
+                header.setAttribute("aria-expanded", "true");
+            }
         });
     });
 
-    // ==========================================
-    // 2. ACESSIBILIDADE: CONTROLE DE FONTE E TEMA
-    // ==========================================
-    let tamanhoFonteAtual = 100;
-    const btnAumentar = document.getElementById("btn-aumentar");
-    const btnDiminuir = document.getElementById("btn-diminuir");
-    const btnTema = document.getElementById("btn-tema");
+    // MENU DE ACESSIBILIDADE - FONTES E TEMA
+    let baseFontSize = 100; // Representa 100% ou 1rem
+    const body = document.body;
 
-    btnAumentar.addEventListener("click", () => {
-        if (tamanhoFonteAtual < 130) {
-            tamanhoFonteAtual += 10;
-            document.documentElement.style.fontSize = `${tamanhoFonteAtual}%`;
+    document.getElementById("btn-aumentar").addEventListener("click", () => {
+        if (baseFontSize < 130) {
+            baseFontSize += 5;
+            document.documentElement.style.fontSize = `${baseFontSize}%`;
         }
     });
 
-    btnDiminuir.addEventListener("click", () => {
-        if (tamanhoFonteAtual > 80) {
-            tamanhoFonteAtual -= 10;
-            document.documentElement.style.fontSize = `${tamanhoFonteAtual}%`;
+    document.getElementById("btn-diminuir").addEventListener("click", () => {
+        if (baseFontSize > 85) {
+            baseFontSize -= 5;
+            document.documentElement.style.fontSize = `${baseFontSize}%`;
         }
     });
 
-    btnTema.addEventListener("click", () => {
-        const temaAtual = document.documentElement.getAttribute("data-theme");
-        if (temaAtual === "dark") {
-            document.documentElement.removeAttribute("data-theme");
-        } else {
-            document.documentElement.setAttribute("data-theme", "dark");
+    document.getElementById("btn-tema").addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+    });
+
+    // ACESSIBILIDADE - SPEECHSYNTHESIS (LEITURA POR VOZ)
+    const synth = window.speechSynthesis;
+    let utterance = null;
+
+    document.getElementById("btn-ouvir").addEventListener("click", () => {
+        // Cancela qualquer leitura em andamento
+        synth.cancel();
+
+        // Seleciona exclusivamente o conteúdo principal de texto
+        const mainContent = document.getElementById("conteudo-principal");
+        
+        // Clona o conteúdo para limpar elementos dinâmicos/interativos indesejados na leitura
+        const clone = mainContent.cloneNode(true);
+        const accordionsFechados = clone.querySelectorAll(".accordion-body");
+        
+        // Remove caixas de imagem ou áreas ocultas para focar estritamente no texto principal estruturado
+        clone.querySelectorAll(".imagem, form, .comment-list, label").forEach(el => el.remove());
+
+        const textToRead = clone.innerText;
+
+        if (textToRead.trim().length > 0) {
+            utterance = new SpeechSynthesisUtterance(textToRead);
+            utterance.lang = "pt-BR";
+            utterance.rate = 1.0; // Velocidade padrão estável
+            synth.speak(utterance);
         }
     });
 
-    // ==========================================
-    // 3. ACESSIBILIDADE: LEITURA POR VOZ (SpeechSynthesis)
-    // ==========================================
-    const btnFalar = document.getElementById("btn-falar");
-    const btnParar = document.getElementById("btn-parar");
-    let engrenagemVoz = window.speechSynthesis;
-    let leituraAtual = null;
+    document.getElementById("btn-parar").addEventListener("click", () => {
+        synth.cancel();
+    });
 
-    btnFalar.addEventListener("click", () => {
-        // Evita sobreposição de vozes
-        if (engrenagemVoz.speaking) {
-            engrenagemVoz.cancel();
+    // FORMULÁRIO DE INSCRIÇÃO NO SEMINÁRIO
+    const seminarForm = document.getElementById("seminar-form");
+    seminarForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+
+        // Feedback moderno para inscrição simulada
+        alert(`Parabéns, ${nome}! Sua vaga para o seminário online foi reservada. Enviamos as credenciais de acesso para ${email}.`);
+        seminarForm.reset();
+    });
+
+    // ÁREA INTERATIVA DE COMENTÁRIOS
+    const commentForm = document.getElementById("comment-form");
+    const commentList = document.getElementById("comment-list");
+
+    commentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const txtComentario = document.getElementById("txt-comentario").value;
+
+        if (txtComentario.trim() !== "") {
+            const commentItem = document.createElement("div");
+            commentItem.className = "comment-item";
+            
+            // Sanitização simples para evitar brechas em produção
+            commentItem.innerText = txtComentario;
+            
+            // Adiciona de forma invertida para o mais novo aparecer no topo
+            commentList.insertBefore(commentItem, commentList.firstChild);
+            
+            document.getElementById("txt-comentario").value = "";
+            alert("Obrigado pela sua contribuição! Seu comentário foi postado com sucesso.");
         }
+    });
+});
 
-        // Seleciona exclusivamente o escopo do conteúdo principal
