@@ -7,148 +7,92 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="#conteudo-principal" class="link-acessibilidade">Pular para o conteúdo principal</a>
 
-    <!-- Caixa Flutuante de Acessibilidade (À Esquerda) -->
-    <div class="acessibilidade-box" aria-label="Menu de Acessibilidade" role="complementary">
-        <button id="btn-aumentar" title="Aumentar Fonte" aria-label="Aumentar tamanho do texto">A+</button>
-        <button id="btn-diminuir" title="Diminuir Fonte" aria-label="Diminuir tamanho do texto">A-</button>
-        <button id="btn-tema" title="Alternar Modo Escuro/Claro" aria-label="Alternar contraste de cores">🌓</button>
-        <button id="btn-ouvir" title="Ouvir Conteúdo" aria-label="Iniciar leitura de voz do texto">▶ Ouvir</button>
-        <button id="btn-parar" title="Parar Leitura" aria-label="Parar leitura de voz do texto">■ Parar</button>
-    </div>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente</h1>
-            <p>O Agronegócio em Nova Tebas: Tradição, Sustentabilidade e Força Econômica no campo.</p>
-            <a href="#conteudo-principal" class="btn-hero">Conhecer Projeto</a>
+    <header class="topo-pagina">
+        <div class="container container-header">
+            <div class="logo">
+                <span class="logo-agro">Agro</span><span class="logo-forte">Forte</span>
+            </div>
+            <nav aria-label="Navegação principal">
+                <ul class="menu-navegacao">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#pilares">Pilares</a></li>
+                </ul>
+            </nav>
+            <div class="botoes-acessibilidade">
+                <button id="btn-alto-contraste" aria-label="Alternar alto contraste">🌓 Contraste</button>
+                <button id="btn-fonte-aumentar" aria-label="Aumentar tamanho do texto">A+</button>
+                <button id="btn-fonte-diminuir" aria-label="Diminuir tamanho do texto">A-</button>
+            </div>
         </div>
     </header>
 
-    <!-- Layout Principal Bi-colunar -->
-    <div class="main-container">
-        
-        <!-- Conteúdo Principal (À Esquerda no Desktop) -->
-        <main id="conteudo-principal" class="content-area">
-            
-            <section class="intro-block">
-                <p class="highlight-text">O agronegócio é a principal força econômica de Nova Tebas, município localizado na região Central do Paraná. O setor destaca-se pela forte presença da agricultura familiar, que compõe cerca de 85% das propriedades rurais locais, gerando renda direta, movimentando o comércio e promovendo o desenvolvimento sustentável.</p>
-                <p>Bem-vindo à página dedicada ao coração econômico de Nova Tebas! Nossa terra é reconhecida pela riqueza de seu solo, pelo clima propício e, acima de tudo, pela dedicação do produtor rural. Com uma forte base na agricultura familiar, o município une tradição e inovação para alimentar famílias e impulsionar o desenvolvimento de toda a região.</p>
-            </section>
-
-            <!-- Espaço Reservado Imagem 1 -->
-            <div class="imagem"> <img src="Foto1.png" alt="Produção agrícola sustentável integrada à tecnologia digital em Nova Tebas"> </div>
-
-            <!-- Seção Accordion - Pilares da Nossa Produção -->
-            <section class="pilares-section">
-                <h2>🌾 Pilares da Nossa Produção</h2>
-                <p class="section-desc">O ecossistema rural de Nova Tebas é diversificado e equilibrado, dividindo-se em importantes cadeias produtivas. Clique nos títulos abaixo para expandir:</p>
-                
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">Bovinocultura de Leite</button>
-                        <div class="accordion-body">
-                            <p>Um dos maiores motores da economia familiar novatebense. Programas municipais de incentivo, como o Pró Leite, promovem o melhoramento genético e a assistência técnica, garantindo alta produtividade e qualidade do leite entregue aos laticínios da região.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">Agricultura de Grãos</button>
-                        <div class="accordion-body">
-                            <p>Grandes e médias extensões de terra dedicadas ao cultivo de culturas fortes no estado, como a soja e o milho, que abastecem o mercado nacional e as cooperativas parceiras.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">Pecuária de Corte</button>
-                        <div class="accordion-body">
-                            <p>Manejo estratégico de rebanhos bovinos, gerando carne de excelente qualidade por meio de pastagens bem aproveitadas.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">Fruticultura e Olericultura Orgânica</button>
-                        <div class="accordion-body">
-                            <p>Nova Tebas ganhou destaque regional com a agroindustrialização de frutas e polpas orgânicas, liderada por cooperativas locais (como a Cooperatvama no distrito de Poema). O modelo associa tecnologia sustentável, como o uso de energia solar e captação de água da chuva, gerando alto valor agregado.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header" aria-expanded="false">Pequenas Agroindústrias</button>
-                        <div class="accordion-body">
-                            <p>Diversificação que inclui a produção local de ovos comerciais, panificados e hortaliças certificados pelo Serviço de Inspeção Municipal (SIM), abrindo portas para novos mercados locais e regionais.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Espaço Reservado Imagem 2 -->
-            <div class="imagem"> <img src="Foto2.png" alt="Produtor da agricultura familiar trabalhando com tecnologia inteligente"> </div>
-
-            <!-- Cards Informativos -->
-            <section class="cards-grid">
-                <div class="card">
-                    <h3>🤝 O Valor da Agricultura Familiar</h3>
-                    <p>Cerca de 85% das propriedades rurais de Nova Tebas operam sob o regime familiar. Esse modelo não apenas fixa o homem no campo, mas também garante a segurança alimentar do município e fortalece cooperativas essenciais (como a Coopertebas). O incentivo à sucessão hereditária e ao cooperativismo faz com que as novas gerações continuem inovando no agronegócio local.</p>
-                </div>
-                <div class="card">
-                    <h3>🚀 Inovação e Futuro no Campo</h3>
-                    <p>Nova Tebas investe constantemente em parcerias com órgãos de extensão rural (como o IDR-Paraná e o Sebrae) para levar capacitação técnica ao campo. O foco do município está em alinhar a alta produtividade com as exigências do mercado moderno: respeito ao meio ambiente, transição energética e manejo inteligente do solo.</p>
-                </div>
-            </section>
-
-            <!-- Espaço Reservado Imagem 3 -->
-            <div class="imagem"> <img src="Foto3.png" alt="Sustentabilidade e painéis solares em propriedades rurais no Paraná"> </div>
-
-            <!-- Interação com o Leitor -->
-            <section class="comentarios-section">
-                <h3>💬 Deixe sua Opinião ou Dúvida</h3>
-                <form id="comment-form" class="comment-container">
-                    <label for="txt-comentario">Espaço de interação com o leitor:</label>
-                    <textarea id="txt-comentario" placeholder="Escreva aqui seu comentário sobre o Agro Sustentável..." required></textarea>
-                    <button type="submit" class="btn-submit">Enviar Comentário</button>
-                </form>
-                <div id="comment-list" class="comment-list"></div>
-            </section>
-
-        </main>
-
-        <!-- Barra Lateral Direita (Formulário Destacado) -->
-        <aside class="sidebar">
-            <div class="sticky-form-box">
-                <h2>Venha conhecer melhor Nova Tebas</h2>
-                <p>Inscreva-se no nosso seminário on-line sobre o Agro sustentável em nosso município.</p>
-                
-                <form id="seminar-form">
-                    <div class="form-group">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" required placeholder="Ex: João Silva">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail Corporativo</label>
-                        <input type="email" id="email" required placeholder="Ex: joao@agro.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" required placeholder="Ex: Nova Tebas">
-                    </div>
-                    <div class="form-group">
-                        <label for="estado">Estado</label>
-                        <input type="text" id="estado" required placeholder="Ex: Paraná">
-                    </div>
-                    <div class="form-group">
-                        <label for="pais">País</label>
-                        <input type="text" id="pais" required placeholder="Ex: Brasil">
-                    </div>
-                    <button type="submit" class="btn-subscribe">Realizar Inscrição</button>
-                </form>
+    <main id="conteudo-principal">
+        <section id="inicio" class="hero">
+            <div class="container hero-conteudo">
+                <h1>Agro Forte, Futuro Sustentável</h1>
+                <p class="subtitulo">Equilíbrio entre produção e meio ambiente em Nova Tebas</p>
+                <a href="#sobre" class="botao-acao">Conheça Nossa Força</a>
             </div>
-        </aside>
+        </section>
 
-    </div>
+        <section id="sobre" class="secao-sobre">
+            <div class="container">
+                <div class="grade-sobre">
+                    <div class="sobre-texto">
+                        <span class="tag-localizacao">Região Central do Paraná</span>
+                        <h2>O agronegócio em Nova Tebas: tradição, sustentabilidade e força econômica</h2>
+                        <p>Bem-vindo à página dedicada ao coração econômico de Nova Tebas! Nossa terra é reconhecida pela riqueza de seu solo, pelo clima propício e, acima de tudo, pela dedicação do produtor rural. Com uma forte base na agricultura familiar, o município une tradição e inovação para alimentar famílias e impulsionar o desenvolvimento de toda a região.</p>
+                    </div>
+                    <div class="sobre-destaque">
+                        <div class="card-estatistica">
+                            <span class="numero">85%</span>
+                            <span class="legenda">das propriedades rurais fazem parte da agricultura familiar</span>
+                        </div>
+                        <p class="destaque-texto">O agronegócio é a principal força econômica de Nova Tebas, gerando renda direta, movimentando o comércio e promovendo o desenvolvimento sustentável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Rodapé -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <p class="footer-phrase">AgroFuturo 2026 - Nova Tebas é a força do campo que alimenta o amanhã!</p>
-            <div class="references">
-                <span>Referências utilizadas:</span>
-                <a href="https://www.bemagro.com/beneficios-inteligencia-artificial-no-campo/" target="_blank" rel="noopener">BemAgro</a> | 
+        <section id="pilares" class="secao-pilares">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <h2>Pilares da Nossa Produção</h2>
+                    <p>O ecossistema rural de Nova Tebas é diversificado e equilibrado, dividindo-se em importantes cadeias produtivas:</p>
+                </div>
+                
+                <div class="grade-cards">
+                    <article class="card-pilar">
+                        <div class="card-icone" aria-hidden="true">🥛</div>
+                        <h3>Bovinocultura de Leite</h3>
+                        <p>Um dos maiores motores da economia familiar novatebense. Programas municipais de incentivo, como o Pró Leite, promovem o melhoramento genético e a assistência técnica, garantindo alta produtividade e qualidade do leite entregue aos laticínios da região.</p>
+                    </article>
+
+                    <article class="card-pilar">
+                        <div class="card-icone" aria-hidden="true">🌱</div>
+                        <h3>Agricultura de Grãos</h3>
+                        <p>Grandes e médias extensões de terra dedicadas ao cultivo de culturas fortes no estado, como a soja e o milho, que abastecem o mercado nacional e as cooperativas parceiras.</p>
+                    </article>
+
+                    <article class="card-pilar">
+                        <div class="card-icone" aria-hidden="true">🐂</div>
+                        <h3>Pecuária de Corte</h3>
+                        <p>Produção forte e integrada ao manejo sustentável de pastagens, aplicando tecnologias de manejo que respeitam o meio ambiente e elevam a qualidade da carne da região central do estado.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape-pagina">
+        <div class="container">
+            <p>&copy; 2026 Agro Forte Nova Tebas. Desenvolvimento Sustentável.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

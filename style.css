@@ -1,408 +1,290 @@
-
-### `style.css`
-```css
-   CONFIGURAÇÃO DE VARIÁVEIS (CUSTOMIZÁVEL)
+/* --- Variáveis de Cores e Estilo --- */
 :root {
-    /* Paleta de Cores Obrigatória */
-    --color-azul: #0a3d62;
-    --color-azul-celeste: #3c6382;
-    --color-azul-metalico: #0c2461;
-    --color-verde: #1e3d2f;
-    --color-verde-light: #2e604a;
-    --color-amarelo: #f6b93b;
-    --color-ouro: #fa983a;
-    --color-branco: #ffffff;
-    --color-preto: #111111;
-    --color-cinza-claro: #f8f9fa;
-    --color-shadow: rgba(0, 0, 0, 0.08);
-
-    /* Fontes e Escalonamento */
-    --font-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-base-size: 1rem;
-    
-    /* Espaçamentos e Bordas */
-    --radius-default: 12px;
-    --radius-round: 50px;
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    
-    /* Configuração de Layout Dinâmico */
-    --container-max-width: 1440px;
-    --padding-section: clamp(1.5rem, 4vw, 4rem);
+    --azul-metalico: #1d3557;
+    --azul-celeste: #4a90e2;
+    --verde-sustentavel: #2a9d8f;
+    --amarelo-ouro: #e9c46a;
+    --branco: #ffffff;
+    --preto-suave: #212529;
+    --cinza-fundo: #f8f9fa;
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --transicao: all 0.3s ease;
 }
 
-/* Modificadores de Acessibilidade (Dark Mode Dinâmico) */
-body.dark-mode {
-    --color-branco: #1a1a1a;
-    --color-preto: #ffffff;
-    --color-cinza-claro: #262626;
-    --color-azul: #4a8bc1;
-    --color-azul-celeste: #8bb3d6;
-    --color-verde: #3b7a5e;
-    --color-shadow: rgba(255, 255, 255, 0.05);
-}
-
-/* Base Styles */
+/* --- Reset e Acessibilidade Base --- */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
+    font-size: 16px;
     scroll-behavior: smooth;
-    font-size: var(--font-base-size);
 }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--color-cinza-claro);
-    color: var(--color-preto);
+    font-family: var(--fonte-principal);
+    background-color: var(--branco);
+    color: var(--preto-suave);
     line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-   CAIXA FLUTUANTE DE ACESSIBILIDADE
-.acessibilidade-box {
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--color-azul-metalico);
-    padding: 10px;
-    border-radius: var(--radius-default);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-    box-shadow: 0 4px 12px var(--color-shadow);
 }
 
-.acessibilidade-box button {
-    background-color: var(--color-branco);
-    color: var(--color-azul-metalico);
-    border: none;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    font-size: 0.85rem;
-    text-align: center;
-}
-
-.acessibilidade-box button:hover, 
-.acessibilidade-box button:focus {
-    background-color: var(--color-amarelo);
-    color: var(--color-preto);
-    outline: 2px solid var(--color-ouro);
-}
-
-   HERO SECTION
-.hero {
-    position: relative;
-    height: clamp(400px, 60vh, 700px);
-    background-color: var(--color-verde);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-    color: #ffffff;
-    overflow: hidden;
-}
-
-.hero-overlay {
+.link-acessibilidade {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(30,61,47,0.9) 0%, rgba(12,36,97,0.85) 100%);
-    z-index: 1;
+    top: -100px;
+    left: 0;
+    background: var(--amarelo-ouro);
+    color: var(--preto-suave);
+    padding: 10px;
+    z-index: 1000;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
+.link-acessibilidade:focus {
+    top: 0;
 }
 
-.hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.2;
-    margin-bottom: 20px;
-    font-weight: 800;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.hero p {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    margin-bottom: 30px;
-    color: #e2e8f0;
-}
-
-.btn-hero {
-    display: inline-block;
-    background-color: var(--color-amarelo);
-    color: var(--color-preto);
-    padding: 12px 32px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: var(--radius-round);
-    box-shadow: 0 4px 6px var(--color-shadow);
-    transition: var(--transition-smooth);
-}
-
-.btn-hero:hover {
-    background-color: var(--color-ouro);
-    transform: translateY(-2px);
-}
-   LAYOUT E ESTRUTURA PRINCIPAL
-.main-container {
-    max-width: var(--container-max-width);
+/* --- Layout Base --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: var(--padding-section) 20px;
-    display: grid;
-    grid-template-columns: minmax(320px, 1fr) 400px;
-    gap: 40px;
+    padding: 40px 0;
 }
 
-@media (max-width: 1024px) {
-    .main-container {
-        grid-template-columns: 1fr;
-    }
-    .acessibilidade-box {
-        top: auto;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
-        width: calc(100% - 40px);
-        justify-content: center;
-    }
+/* --- Header --- */
+.topo-pagina {
+    background-color: var(--azul-metalico);
+    color: var(--branco);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Área de Conteúdo (Esquerda) */
-.content-area {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.intro-block .highlight-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-azul-celeste);
-    border-left: 4px solid var(--color-ouro);
-    padding-left: 15px;
-    margin-bottom: 20px;
-}
-
-   REQUISITO: IMAGENS (PLACEHOLDERS PREMIUM)
-.imagem {
-    width: 100%;
-    background-color: var(--color-azul);
-    border-radius: var(--radius-default);
-    overflow: hidden;
-    box-shadow: 0 10px 20px var(--color-shadow);
-    transition: var(--transition-smooth);
-    aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition-smooth);
-}
-
-.imagem:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.imagem:hover img {
-    filter: brightness(1.05);
-}
-
-   COMPONENTE: ACCORDION (SEÇÕES EXPANSÍVEIS)
-.pilares-section h2 {
-    margin-bottom: 10px;
-    color: var(--color-azul);
-}
-
-.section-desc {
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-}
-
-.accordion {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.accordion-item {
-    background-color: var(--color-branco);
-    border-radius: var(--radius-default);
-    box-shadow: 0 4px 6px var(--color-shadow);
-    overflow: hidden;
-}
-
-.accordion-header {
-    width: 100%;
-    padding: 18px 24px;
-    background-color: var(--color-branco);
-    color: var(--color-preto);
-    border: none;
-    text-align: left;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
+.container-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: var(--transition-smooth);
+    padding: 15px 0;
 }
 
-.accordion-header::after {
-    content: '▼';
-    font-size: 0.8rem;
-    color: var(--color-azul-celeste);
-    transition: transform 0.3s ease;
-}
-
-.accordion-header:hover {
-    background-color: rgba(60, 99, 130, 0.05);
-}
-
-.accordion-item.active .accordion-header {
-    background-color: var(--color-azul);
-    color: #ffffff;
-}
-
-.accordion-item.active .accordion-header::after {
-    transform: rotate(-180deg);
-    color: var(--color-amarelo);
-}
-
-.accordion-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-    background-color: var(--color-branco);
-}
-
-.accordion-body p {
-    padding: 20px 24px;
-    font-size: 0.95rem;
-}
-
-.accordion-item.active .accordion-body {
-    max-height: 1000px;
-    transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-    border-top: 1px solid rgba(0,0,0,0.05);
-}
-
-   COMPONENTE: CARDS INFORMATIVOS
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-}
-
-.card {
-    background-color: var(--color-branco);
-    padding: 30px;
-    border-radius: var(--radius-default);
-    box-shadow: 0 6px 12px var(--color-shadow);
-    border-top: 5px solid var(--color-verde);
-    transition: var(--transition-smooth);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px var(--color-shadow);
-}
-
-.card h3 {
-    margin-bottom: 15px;
-    color: var(--color-azul-metalico);
-}
-   BARRA LATERAL / FORMULÁRIO DESTACADO
-.sidebar {
-    position: relative;
-}
-
-.sticky-form-box {
-    position: sticky;
-    top: 40px;
-    background: linear-gradient(180deg, var(--color-branco) 0%, var(--color-cinza-claro) 100%);
-    padding: 30px;
-    border-radius: var(--radius-default);
-    box-shadow: 0 10px 30px var(--color-shadow);
-    border: 2px solid var(--color-azul);
-}
-
-.sticky-form-box h2 {
-    font-size: 1.4rem;
-    color: var(--color-azul-metalico);
-    margin-bottom: 10px;
-}
-
-.sticky-form-box p {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 0.85rem;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--color-azul-celeste);
-    border-radius: 6px;
-    background-color: var(--color-branco);
-    color: var(--color-preto);
-    font-size: 0.95rem;
-}
-
-.form-group input:focus {
-    outline: 2px solid var(--color-ouro);
-}
-
-.btn-subscribe {
-    width: 100%;
-    padding: 14px;
-    background-color: var(--color-verde);
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
+.logo {
+    font-size: 1.5rem;
     font-weight: bold;
+}
+
+.logo-agro { color: var(--amarelo-ouro); }
+.logo-forte { color: var(--branco); }
+
+.menu-navegacao {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu-navegacao a {
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+.menu-navegacao a:hover {
+    color: var(--azul-celeste);
+}
+
+.botoes-acessibilidade button {
+    background: transparent;
+    border: 1px solid var(--branco);
+    color: var(--branco);
+    padding: 5px 10px;
+    margin-left: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: var(--transition-smooth);
+    border-radius: 4px;
+    transition: var(--transicao);
 }
 
-.btn-subscribe:hover {
-    background-color: var(--color-verde-light);
+.botoes-acessibilidade button:hover {
+    background: var(--branco);
+    color: var(--azul-metalico);
 }
 
-   ÁREA DE COMENTÁRIOS
-.comentarios-section {
-    background-color: var(--color-branco);
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(29, 53, 87, 0.8), rgba(42, 157, 143, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" fill="%232a9d8f" opacity="0.1"/></svg>');
+    background-color: var(--azul-metalico);
+    color: var(--branco);
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--branco);
+}
+
+.hero .subtitulo {
+    font-size: 1.5rem;
+    color: var(--amarelo-ouro);
+    margin-bottom: 30px;
+}
+
+.botao-acao {
+    display: inline-block;
+    background-color: var(--amarelo-ouro);
+    color: var(--preto-suave);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: var(--transicao);
+}
+
+.botao-acao:hover {
+    background-color: var(--branco);
+    transform: translateY(-2px);
+}
+
+/* --- Seção Sobre --- */
+.secao-sobre {
+    background-color: var(--branco);
+}
+
+.grade-sobre {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.tag-localizacao {
+    color: var(--verde-sustentavel);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.secao-sobre h2 {
+    color: var(--azul-metalico);
+    font-size: 2.2rem;
+    margin: 10px 0 20px 0;
+    line-height: 1.2;
+}
+
+.sobre-destaque {
+    background-color: var(--cinza-fundo);
     padding: 30px;
-    border-radius: var(--radius-default);
-    box-shadow: 0 4px 6px var(--color-shadow);
+    border-left: 5px solid var(--verde-sustentavel);
+    border-radius: 0 8px 8px 0;
 }
 
-.comentarios-section h3 {margin-bottom: 15px;}.comment-container label {display: none;}.comment-container textarea {width: 100%;height: 100px;padding: 15px;border: 1px solid var(--color-azul-celeste);border-radius: 6px;background-color: var(--color-branco);color: var(--color-preto);resize: vertical;margin-bottom: 15px;}.btn-submit {background-color: var(--color-azul-celeste);color: white;padding: 10px 20px;border: none;border-radius: 6px;font-weight: bold;cursor: pointer;transition: var(--transition-smooth);}.btn-submit:hover {background-color: var(--color-azul);}.comment-list {margin-top: 25px;display: flex;flex-direction: column;gap: 15px;}.comment-item {background-color: var(--color-cinza-claro);padding: 15px;border-radius: 6px;border-left: 4px solid var(--color-amarelo);}/* ==========================================RODAPÉ========================================== */.main-footer {background-color: var(--color-preto);color: #ffffff;padding: 40px 20px;text-align: center;margin-top: 60px;}.footer-content {max-width: var(--container-max-width);margin: 0 auto;display: flex;flex-direction: column;gap: 20px;}.footer-phrase {font-weight: bold;font-size: 1.1rem;}.references a {color: var(--color-amarelo);text-decoration: none;margin: 0 5px;}.references a:hover {text-decoration: underline;}/* Espaçamento extra inferior em mobile devido à barra de acessibilidade */@media (max-width: 1024px) {body {padding-bottom: 80px;}}
+.card-estatistica {
+    margin-bottom: 20px;
+}
+
+.card-estatistica .numero {
+    display: block;
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--azul-metalico);
+    line-height: 1;
+}
+
+.card-estatistica .legenda {
+    font-weight: bold;
+    color: var(--verde-sustentavel);
+}
+
+/* --- Seção Pilares --- */
+.secao-pilares {
+    background-color: var(--cinza-fundo);
+}
+
+.cabecalho-secao {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.cabecalho-secao h2 {
+    color: var(--azul-metalico);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.grade-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-pilar {
+    background-color: var(--branco);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--transicao);
+    border-top: 4px solid var(--azul-celeste);
+}
+
+.card-pilar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.card-icone {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card-pilar h3 {
+    color: var(--azul-metalico);
+    margin-bottom: 15px;
+}
+
+/* --- Rodapé --- */
+.rodape-pagina {
+    background-color: var(--preto-suave);
+    color: var(--branco);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- Modo Alto Contraste --- */
+body.alto-contraste {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.alto-contraste * {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+body.alto-contraste .botao-acao,
+body.alto-contraste .botoes-acessibilidade button {
+    border: 2px solid #ffffff !important;
+    padding: 10px !important;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .container-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .grade-sobre {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
