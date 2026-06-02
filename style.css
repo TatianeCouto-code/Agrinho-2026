@@ -1,0 +1,419 @@
+### `style.css`
+```css
+/* ==========================================================================
+   VARIÁVEIS E CONFIGURAÇÕES DE TEMA (Fácil Personalização)
+   ========================================================================== */
+:root {
+    /* Paleta de cores solicitada */
+    --cor-azul: #0a3d62;
+    --cor-branco: #ffffff;
+    --cor-azul-celeste: #3c6382;
+    --cor-azul-metalico: #079992;
+    --cor-verde: #388e3c;
+    --cor-amarelo: #fbc02d;
+    --cor-ouro: #d4af37;
+    --cor-preto: #1e272e;
+
+    /* Cores de suporte e interface */
+    --bg-principal: #f8f9fa;
+    --bg-card: #ffffff;
+    --texto-principal: #2c3e50;
+    --texto-suave: #60a5fa;
+    --borda-suave: #e2e8f0;
+
+    /* Tipografia responsiva com clamp() */
+    --fonte-titulo-hero: clamp(2rem, 4vw + 1rem, 3.5rem);
+    --fonte-titulo-secao: clamp(1.5rem, 2.5vw + 0.5rem, 2.2rem);
+    --fonte-base: clamp(1rem, 0.3vw + 0.9rem, 1.15rem);
+    --tamanho-base-html: 100%;
+
+    /* Layout, Espaçamentos e Efeitos */
+    --arredondamento: 12px;
+    --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --sombra-premium: 0 20px 40px rgba(10, 61, 98, 0.12);
+    --transicao: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --largura-maxima: 1440px;
+}
+
+/* Variáveis para o Modo Escuro */
+[data-theme="dark"] {
+    --bg-principal: #0f172a;
+    --bg-card: #1e293b;
+    --texto-principal: #f8fafc;
+    --cor-azul: #38bdf8;
+    --cor-azul-celeste: #7dd3fc;
+    --borda-suave: #334155;
+    --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--tamanho-base-html);
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+}
+
+/* Acessibilidade: link invisível para leitores/teclado */
+.sr-only-focusable {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.sr-only-focusable:focus {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: var(--cor-amarelo);
+    color: var(--cor-preto);
+    padding: 1rem;
+    z-index: 9999;
+    clip: auto;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   PAINEL DE ACESSIBILIDADE FLUTUANTE
+   ========================================================================== */
+.painel-acessibilidade {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-card);
+    border: 2px solid var(--cor-azul-celeste);
+    border-radius: var(--arredondamento);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+    box-shadow: var(--sombra-premium);
+}
+
+.painel-acessibilidade button {
+    background: var(--bg-principal);
+    border: 1px solid var(--borda-suave);
+    color: var(--texto-principal);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicao);
+}
+
+.painel-acessibilidade button:hover, 
+.painel-acessibilidade button:focus {
+    background: var(--cor-azul);
+    color: var(--cor-branco);
+    outline: 2px solid var(--cor-ouro);
+}
+
+.painel-acessibilidade button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    background: linear-gradient(135deg, rgba(10,61,98,0.95) 0%, rgba(7,153,146,0.9) 100%);
+    color: var(--cor-branco);
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    text-align: left;
+    position: relative;
+    border-bottom: 6px solid var(--cor-verde);
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+}
+
+.hero-tag {
+    background: var(--cor-verde);
+    color: var(--cor-branco);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: max-content;
+}
+
+.hero h1 {
+    font-size: var(--font-titulo-hero);
+    line-height: 1.15;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 1vw + 0.5rem, 1.4rem);
+    opacity: 0.9;
+    max-width: 700px;
+}
+
+/* ==========================================================================
+   LAYOUT EM GRADE (GRID SYSTEM) Responsivo
+   ========================================================================== */
+.layout-grade {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr);
+    gap: 40px;
+    padding: 60px 0;
+}
+
+@media (min-width: 1024px) {
+    .layout-grade {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL E COMPONENTES
+   ========================================================================== */
+.conteudo-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.conteudo-principal h2 {
+    font-size: var(--font-titulo-secao);
+    color: var(--cor-azul);
+    margin-bottom: 1.5rem;
+}
+[data-theme="dark"] .conteudo-principal h2 {
+    color: var(--cor-azul-celeste);
+}
+
+.introducao p {
+    margin-bottom: 1.2rem;
+    font-size: var(--fonte-base);
+}
+
+/* Estrutura de imagens solicitada */
+.imagem {
+    width: 100%;
+    border-radius: var(--arredondamento);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+    background: var(--borda-suave);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.imagem::before {
+    content: "Espaço Reservado para Imagem Premium";
+    position: absolute;
+    color: var(--texto-principal);
+    opacity: 0.4;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: var(--transicao);
+}
+
+.imagem:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-premium);
+}
+
+.imagem:hover img {
+    scale: 1.03;
+}
+
+/* Acordeão Interativo (Pilares) */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.accordion-item {
+    background: var(--bg-card);
+    border: 1px solid var(--borda-suave);
+    border-radius: var(--arredondamento);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+}
+
+.accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transicao);
+}
+
+.accordion-header:hover, .accordion-header:focus {
+    background-color: rgba(10, 61, 98, 0.05);
+    color: var(--cor-azul-metalico);
+    outline: none;
+}
+
+.accordion-header .icon {
+    font-size: 1.5rem;
+    color: var(--cor-verde);
+    transition: var(--transicao);
+}
+
+.accordion-content {
+    padding: 0 20px 20px 20px;
+    font-size: var(--fonte-base);
+    animation: fadeIn 0.3s ease;
+}
+
+/* Cards de Setores */
+.cards-setores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--borda-suave);
+    border-radius: var(--arredondamento);
+    padding: 30px;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-premium);
+    border-color: var(--cor-verde);
+}
+
+.card h3 {
+    color: var(--cor-azul);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+[data-theme="dark"] .card h3 {
+    color: var(--cor-azul-celeste);
+}
+
+/* ==========================================================================
+   BARRA LATERAL / STICKY FORMULÁRIO
+   ========================================================================== */
+.sticky-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 40px;
+}
+
+.card-formulario {
+    background: var(--bg-card);
+    border: 2px solid var(--cor-azul);
+    border-radius: var(--arredondamento);
+    padding: 30px;
+    box-shadow: var(--sombra-premium);
+}
+
+.card-formulario h3 {
+    font-size: 1.4rem;
+    color: var(--cor-azul);
+    margin-bottom: 10px;
+}
+
+.card-formulario p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    opacity: 0.8;
+}
+
+/* Formulários Estilizados */
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.campo-grupo label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.campo-grupo input, .campo-grupo textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--borda-suave);
+    border-radius: 6px;
+    background: var(--bg-principal);
+    color: var(--texto-principal);
+    font-size: 1rem;
+    transition: var(--transicao);
+}
+
+.campo-grupo input:focus, .campo-grupo textarea:focus {
+    outline: 2px solid var(--cor-azul-metalico);
+    border-color: transparent;
+    background: var(--bg-card);
+}
+
+/* Botões Modernos */
+.btn {
+    display: inline-flex;
+    align-items: center;
+justify-content: center;padding: 14px 28px;font-size: 1rem;font-weight: 700;border-radius: 8px;border: none;cursor: pointer;transition: var(--transicao);text-decoration: none;width: max-content;}.btn-primary {background: var(--cor-amarelo);color: var(--cor-preto);box-shadow: 0 4px 15px rgba(251, 192, 45, 0.3);}.btn-primary:hover, .btn-primary:focus {background: var(--cor-ouro);transform: translateY(-2px);}.btn-secondary {background: var(--cor-azul);color: var(--cor-branco);}.btn-secondary:hover, .btn-secondary:focus {background: var(--cor-azul-celeste);}.btn-bloco {width: 100%;}/* Interação / Comentários */.comentarios-secao {background: var(--bg-card);padding: 30px;border-radius: var(--arredondamento);border: 1px solid var(--borda-suave);}.form-comentario textarea {height: 100px;resize: vertical;}.lista-comentarios {margin-top: 24px;display: flex;flex-direction: column;gap: 16px;}.item-comentario {background: var(--bg-principal);padding: 16px;border-radius: 8px;border-left: 4px solid var(--cor-azul-metalico);animation: slideUp 0.3s ease;}/* ==========================================================================RODAPÉ========================================================================== */.rodape {background: var(--cor-preto);color: var(--cor-branco);padding: 40px 0;margin-top: 60px;font-size: 0.95rem;}.rodape-conteudo {display: flex;flex-direction: column;gap: 24px;justify-content: space-between;align-items: center;text-align: center;}@media (min-width: 768px) {.rodape-conteudo {flex-direction: row;text-align: left;}}.frase-impacto {max-width: 500px;}.referencias ul {list-style: none;display: flex;flex-direction: column;gap: 8px;margin-top: 8px;}.referencias a {color: var(--cor-azul-celeste);text-decoration: none;transition: var(--transicao);}.referencias a:hover {color: var(--cor-amarelo);text-decoration: underline;}/* ANIMACÕES */@keyframes fadeIn {from { opacity: 0; transform: translateY(-5px); }to { opacity: 1; transform: translateY(0); }}@keyframes slideUp {from { opacity: 0; transform: translateY(10px); }to { opacity: 1; transform: translateY(0); }}/* Adaptação fina para telas mobile extremas /@media (max-width: 480px) {.painel-acessibilidade {left: auto;right: 10px;top: auto;bottom: 20px;transform: none;flex-direction: row;width: calc(100% - 20px);justify-content: space-around;box-shadow: 0 -5px 25px rgba(0,0,0,0.15);}body {padding-bottom: 80px; / Garante espaço para o painel móvel */}}
